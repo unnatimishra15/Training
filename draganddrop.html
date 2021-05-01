@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Dag and Drop</title>
+        <script type="text/javascript">
+
+            function drag(e)
+            {
+                e.dataTransfer.setData("message",e.target.id);
+                console.log(e)
+                
+            }
+
+            function drop(e)
+            {
+                e.preventDefault();
+                var data = e.dataTransfer.getData("message");
+                e.target.appendChild(document.getElementById(data));
+                console.log(e)
+            }
+            function allowDrop(e)
+            {
+                e.preventDefault();
+                console.log(e)
+            }
+        </script>
+    </head>
+    <body>
+        <div style="float: left;">
+        <div style="width: 350px; height: 200px; border: 1px solid black; float: left;margin: 20px;" ondragover="allowDrop(event)" ondrop="drop(event)" ondragstart="drag(event)">
+
+        </div>
+        <img id = "image" src = "images/p2.png" draggable="true" ondragstart="drag(event)">
+
+        <div style="width: 350px; height: 200px; float: right; border: 1px solid black; margin: 20px;"ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+    </div>
+</html>
