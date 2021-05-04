@@ -5,7 +5,9 @@
 
             function drag(e)
             {
+                e.dataTransfer.effectAllowed = 'move';
                 e.dataTransfer.setData("message",e.target.id);
+                e.dataTransfer.setDragImage(e.target,0,0);
                 console.log(e)
                 
             }
@@ -26,11 +28,10 @@
     </head>
     <body>
         <div style="float: left;">
-        <div style="width: 350px; height: 200px; border: 1px solid black; float: left;margin: 20px;" ondragover="allowDrop(event)" ondrop="drop(event)" ondragstart="drag(event)">
-
+        <div style="width: 350px; height: 200px; border: 1px solid black; float: left;margin: 20px;" ondragover="allowDrop(event)" ondrop="drop(event)" >
+            <img id = "image" src = "images/p2.png" draggable="true" ondragstart="drag(event)">
         </div>
-        <img id = "image" src = "images/p2.png" draggable="true" ondragstart="drag(event)">
-
-        <div style="width: 350px; height: 200px; float: right; border: 1px solid black; margin: 20px;"ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div style="width: 350px; height: 200px; float: right; border: 1px solid black; margin: 20px;" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        
     </div>
 </html>
