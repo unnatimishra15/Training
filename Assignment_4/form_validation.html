@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+        
+    
+   
+</head>
+<body>
+        <div class="container"> <br><br>
+            <h1 class="text-center text-warning">Form Validation Using Jquery</h1>
+            <div class="col-lg-8 m-auto d-block">
+                <form action="">
+                    <div class="form-group">
+                        <label for="user">Username:</label>
+                        <input type="text" name="username" id="username" class="form-control" autocomplete="off">
+                        <h5 id = "usercheck"></h5>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" name="pass" id="password" class="form-control" autocomplete="off">
+                        <h5 id = "passcheck"></h5>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="conpass">Confirm Password:</label>
+                        <input type="password" name="username" id="conpass" class="form-control" autocomplete="off">
+                        <h5 id = "concheck"></h5>
+                    </div>
+                    <input type="submit" value="Submit" id="submitbtn" class="btn btn-primary">
+                </form>
+            </div>
+
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $('document').ready(function(){
+
+            $('#usercheck').hide();
+            $('#passcheck').hide();
+            $('#concheck').hide();
+            var user_error = true;
+            var pass_error  = true;
+            var con_error = true;
+            $('#username').keyup(function(){
+                usernameCheck();
+            });
+            function usernameCheck(){
+                var username_val = $('#username').val();
+                if(username_val.length == ''){
+                        $('#usercheck').show();
+                        $('#usercheck').html('**Please fill the username');
+                        $('#usercheck').focus();
+                        $('#usercheck').css("color","red");
+                        user_error = false;
+                        return false;
+                }else{
+                    $('#usercheck').hide();
+                }
+                if((username_val.length<3) || (username_val.length>10)){
+                        $('#usercheck').show();
+                        $('#usercheck').html('**Username must be between 3 and 10');
+                        $('#usercheck').focus();
+                        $('#usercheck').css("color","red");
+                        user_error = false;
+                        return false;
+                }else{
+                    $('#usercheck').hide();
+                }
+                    
+            }
+           
+            $('#password').keyup(function(){
+                passwordCheck();
+            });
+                
+       
+        function passwordCheck(){
+            var password_val = $('#password').val();
+         
+            if(password_val.length == ''){
+                        $('#passcheck').show();
+                        $('#passcheck').html('**Please fill the password');
+                        $('#passcheck').focus();
+                        $('#passcheck').css("color","red");
+                        pass_error = false;
+                        return false;
+                }else{
+                    $('#passcheck').hide();
+                }
+                if((password_val.length<3) || (password_val.length>10)){
+                        $('#passcheck').show();
+                        $('#passcheck').html('**Password must be between 3 and 10');
+                        $('#passcheck').focus();
+                        $('#passcheck').css("color","red");
+                        pass_error = false;
+                        return false;
+                }else{
+                    $('#passcheck').hide();
+                }
+        
+
+        }
+        $('#conpass').keyup(function(){
+                conpasswordCheck();
+            });
+        function conpasswordCheck(){
+          
+            var conpass_val = $('#conpass').val();
+            var password_val = $('#password').val();
+            if(conpass_val.length == ''){
+                        $('#concheck').show();
+                        $('#concheck').html('**Please fill the password');
+                        $('#concheck').focus();
+                        $('#concheck').css("color","red");
+                        con_error = false;
+                        return false;
+                }           
+                else{
+                    $('#concheck').hide();
+                }
+                
+                if(password_val != conpass_val ){
+                        $('#concheck').show();
+                        $('#concheck').html('**Passwords are not matching');
+                        $('#concheck').focus();
+                        $('#concheck').css("color","red");
+                        con_error = false;
+                        return false;
+
+                } else{
+                    $('#concheck').hide();
+                }
+        
+
+        }
+
+        $('#submitbtn').submit(function(){});
+            user_error = true;
+            pass_error  = true;
+            con_error = true;
+            usernameCheck();
+            passwordCheck();
+            conpasswordCheck();
+            if((user_error == true) && (pass_error == true) && (con_error == true)){
+                return true;
+
+            }else{
+                return false;
+            }
+    });
+    </script>
+</body>
+</html>

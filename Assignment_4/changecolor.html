@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Color of Div</title>
+   
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+   
+    
+</head>
+<body>
+    <div style="border: 1px solid black ; background: red; width: 200px; height: 200px; margin: 20px;" id = "content">
+        
+          </div>
+    <button type="button" id= "change"> Change Color</button>
+</body>
+<script>
+    $(document).ready(function(){
+        $('#change').click(function(){
+            changeColor();
+        });
+   
+});
+
+function random(number) {
+    return Math.floor(Math.random() * (number+1));
+  }
+
+function changeColor(){
+    const color = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+    document.getElementById('content').style.background = color;
+}
+
+</script>
+
+</html>

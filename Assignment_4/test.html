@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fadein and fadeout in HTML</title>
+   <link rel="stylesheet" href="css/style.css">
+    
+</head>
+<body>
+    <div class="slideshowcontainer">
+        <ul class="slideshow"> 
+            <li><img src="images/image1.webp" alt=""></li>
+            <li><img src="images/image2.jpg" alt=""></li>
+            <li><img src="images/image3.jpg" alt=""></li>
+            <li><img src="images/image4.jpg" alt=""></li>
+            <li><img src="images/image5.jpg" alt=""></li>
+
+
+        </ul>
+     </div>
+     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+     <script>
+        $(document).ready(function preloader(){
+            var slides = $('.slideshow>li');
+            var slideCount = 0;
+            var slidetotal = slides.length;
+            var slidechache = [];
+            (function preload(){
+                    if(slideCount<slidetotal){
+                        slidechache[slideCount] = new Image();
+                        slidechache[slideCount].src = slides.eq(slideCount).find('img').attr('src');
+                        slidechache[slideCount].onload = function(){
+                                slideCount++;
+                                preloader();
+
+                        }
+                    }
+                    else 
+                    {
+                        //run the slideshow
+                        slideCount = 0;
+                        slideShow();
+                    }
+
+
+                    
+            });
+            function slideShow(){
+                slides.eq(slideCount).fadeIn(1000).delay(2000).fadeOut(1000,function(){
+                    slideCount<slidetotal-1 ? slideCount++ : slideCount = 0;
+                    slideShow();
+
+                });
+
+
+            }
+
+
+        });
+
+    </script>
+    
+</body>
+</html>

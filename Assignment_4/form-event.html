@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Event</title>
+</head>
+<body>
+    <form id = "form">
+        <label for="">Name</label><br>
+        <input type="text" id = "name" name = "name"><br>
+        <label for="">Email</label><br>
+        <input type="email" name="email" id="email"><br>
+        <label for="">Gender</label><br>
+        <select id = "gender" name= "gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+
+        </select>
+        <br>
+        <input type="submit" value="sumit">
+
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('input').focus(function(){
+              $(this).css("background",'pink');
+            });
+        $('input').blur(function(){
+              $(this).css("background",'white');
+             
+
+        });
+        $('input').keyup(function(e){
+              console.log(e.target.value);
+             
+
+        });
+                // if value changes 
+        $('select#gender').change(function(e){
+             alert(e.target.value);  
+
+        });
+        $('form').submit(function(e){
+            e.preventDefault();
+            var name = $('input#name').val();
+             console.log("submitted " + name);  
+
+        });
+        });
+        
+    </script>
+
+
+    
+</body>
+</html>
